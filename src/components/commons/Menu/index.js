@@ -25,7 +25,7 @@ const links = [
         <Logo/>
       </MenuWrapper.LeftSide>
       <MenuWrapper.CentralSide>
-        {links.map( (link) => <li><a href={link.url}>{link.texto}</a></li> )}
+        {links.map((link) => <li><a href={link.url}>{link.texto}</a></li>)}
       </MenuWrapper.CentralSide>
       <MenuWrapper.RightSide>
         <button>
