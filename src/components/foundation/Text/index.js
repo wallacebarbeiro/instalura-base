@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
+import { propToStyle } from '../../../theme/utils/propToStyle';
 
 export const TextStyleVariants = {
     paragraph1 : css`
@@ -15,9 +16,18 @@ export const TextStyleVariants = {
     `,
 }
 
-
 const TextBase = styled.span`
     ${({variant}) =>  TextStyleVariants[variant]} 
+    ${(props)=>propToStyle('textAlign')}
+    /* ${(props) => {
+        return {
+            textAlign :  props.textAlign,
+        }
+        // return `
+        // text-align :  ${props.textAlign},
+        // `
+        
+    }} */
 `;
 
 
