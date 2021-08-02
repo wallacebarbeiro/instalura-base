@@ -1,35 +1,58 @@
-import { Button } from '../src/components/commons/Button';
+import React from 'react';
+import Button from '../src/components/commons/Button';
 import Footer from '../src/components/commons/Footer';
 import Menu from '../src/components/commons/Menu';
 import Text from '../src/components/foundation/Text';
-import { Grid } from '../src/components/foundation/layout/Grid';
+import Grid from '../src/components/foundation/layout/Grid';
+import Box from '../src/components/foundation/layout/Box';
 
 export default function Home() {
   return (
-    <div style={{
-      flex: '1',
-      display: 'flex',
-      flexWrap: 'wrap',
-      flexDirection: 'column',
-      justifyContent: 'space-between',
-    }}>
-      <Menu /> 
+    <Box
+      flex="1"
+      display="flex"
+      flexWrap="wrap"
+      flexDirection="column"
+      justifyContent="space-between"
+      backgroundImage="url(/images/bubbles.svg)"
+      backgroundRepeat="no-repeat"
+      backgroundPosition={{
+        xs: 'center 60%',
+        md: 'bottom right',
+      }}
+    >
+      <Menu />
 
-      <Grid.Container>
-        <Grid.Row>          
-           <Grid.Col 
-          //  value={6} 
+      <Grid.Container
+        marginTop={{
+          xs: '32px',
+          md: '75px',
+        }}
+      >
+        <Grid.Row>
+          <Grid.Col
+          //  value={6}
           //  offset={1}
-           value={{xs:12, md:5 }}
-           offset={{xs:0, md:1 }}
-           > 
+            value={{ xs: 12, md: 5 }}
+            offset={{ xs: 0, md: 1 }}
+            display="flex"
+            alignItems="flex-start"
+            justifyContent="center"
+            flexDirection="column"
+          >
             <Text
               variant="title"
               tag="h1"
-              color="tertiary.main"         
+              color="tertiary.main"
               textAlign={{
                 xs: 'center',
                 md: 'left',
+              }}
+              marginTop={{
+                xs: '0px',
+              }}
+              marginBottom={{
+                xs: '0px',
               }}
             >
               Compartilhe momentos e conecte-se com amigos
@@ -42,6 +65,10 @@ export default function Home() {
                 xs: 'center',
                 md: 'left',
               }}
+              marginBottom={{
+                xs: '24px',
+                md: '40px',
+              }}
             >
               Lorem Ipsum is simply dummy text of the printing and typesetting industry.
               Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.
@@ -53,6 +80,10 @@ export default function Home() {
                 xs: 'auto',
                 md: 'initial',
               }}
+              marginBottom={{
+                xs: '40px',
+                md: '0px',
+              }}
               display="block"
             >
               Cadastrar
@@ -62,14 +93,15 @@ export default function Home() {
           <Grid.Col value={{ xs: 12, md: 6 }}>
             {/* <img src="http://placehold.it/400x400" /> */}
             <img
+              alt="Imagem do celular com o Cage"
               style={{ display: 'block', margin: 'auto' }}
               src="https://bootcamp-alura-01-git-modulo01.omariosouto.vercel.app/images/phones.png"
             />
           </Grid.Col>
         </Grid.Row>
-      </Grid.Container>      
+      </Grid.Container>
 
-      <Footer />   
-    </div>
-  )
+      <Footer />
+    </Box>
+  );
 }
