@@ -8,6 +8,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "framer-motion": "^4.1.17",
     "lint": "^0.7.0",
     "lodash": "^4.17.21",
     "next": "latest",
