@@ -1,7 +1,6 @@
 // eslint-disable-next-line import/no-unresolved
 const shell = require('shelljs');
 
-
 // eslint-disable-next-line no-console
 console.log('Olá mundo');
 
