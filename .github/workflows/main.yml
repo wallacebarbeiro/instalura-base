@@ -31,4 +31,4 @@ jobs:
       - name: Node Version
         run: node -v
       - name: Roda o Linter!
-        run: npm run lint
+        run: yarn lint
