@@ -1,53 +1,19 @@
 import React from 'react';
 import Button from '../src/components/commons/Button';
-import Footer from '../src/components/commons/Footer';
-import Menu from '../src/components/commons/Menu';
 import Text from '../src/components/foundation/Text';
 import Grid from '../src/components/foundation/layout/Grid';
+import { WebsitePageContext } from '../src/components/wrappers/WebsitePage';
 import Box from '../src/components/foundation/layout/Box';
-import Modal from '../src/components/commons/Modal';
-import FormCadastro from '../src/components/patterns/FormCadastro';
+import websitePageHOC from '../src/components/wrappers/WebsitePage/hoc';
 
-export default function Home() {
-  const [isModalOpen, setModalState] = React.useState(false);
-
+function HomeScreen() {
+  const websitePageContext = React.useContext(WebsitePageContext);
   return (
     <Box
-      flex="1"
       display="flex"
-      flexWrap="wrap"
+      flex="1"
       flexDirection="column"
-      justifyContent="space-between"
-      backgroundImage="url(/images/bubbles.svg)"
-      backgroundRepeat="no-repeat"
-      backgroundPosition={{
-        xs: 'center 60%',
-        md: 'bottom right',
-      }}
     >
-
-      {/* [SOLID]
-        S = Single Responsability
-        O = Open Closed
-        L = Liskov Substituition
-        I = Interface Segregation
-        D = Dependecy Inversion
-      */}
-      <Modal
-        isOpen={isModalOpen}
-        onClose={() => setModalState(false)}
-      >
-
-        {(propsDoModal) => (
-          <FormCadastro propsDoModal={propsDoModal} />
-        )}
-
-      </Modal>
-
-      <Menu
-        onCadastrarClick={() => setModalState(true)}
-      />
-
       <Grid.Container
         marginTop={{
           xs: '32px',
@@ -56,8 +22,8 @@ export default function Home() {
       >
         <Grid.Row>
           <Grid.Col
-          //  value={6}
-          //  offset={1}
+      //  value={6}
+      //  offset={1}
             value={{ xs: 12, md: 5 }}
             offset={{ xs: 0, md: 1 }}
             display="flex"
@@ -111,7 +77,7 @@ export default function Home() {
               }}
               display="block"
               onClick={() => {
-                setModalState(!isModalOpen);
+                websitePageContext.toggleModalCadastro();
               }}
             >
               Cadastrar
@@ -128,8 +94,46 @@ export default function Home() {
           </Grid.Col>
         </Grid.Row>
       </Grid.Container>
-
-      <Footer />
     </Box>
   );
 }
+
+export default websitePageHOC(HomeScreen, {
+  pageWrapperProps: {
+    seoProps: {
+      headTitle: 'Home',
+    },
+    pageBoxProps: {
+      flexWrap: 'wrap',
+      justifyContent: 'space-between',
+      backgroundImage: 'url(/images/bubbles.svg)',
+      backgroundRepeat: 'no-repeat',
+      backgroundPosition: {
+        xs: 'center 60%',
+        md: 'bottom right',
+      },
+    },
+  },
+});
+
+// export default function Home() {
+//   return (
+//     <WebsitePageWrapper
+//       seoProps={{
+//         headTitle: 'Home',
+//       }}
+//       pageBoxProps={{
+//         flexWrap: 'wrap',
+//         justifyContent: 'space-between',
+//         backgroundImage: 'url(/images/bubbles.svg)',
+//         backgroundRepeat: 'no-repeat',
+//         backgroundPosition: {
+//           xs: 'center 60%',
+//           md: 'bottom right',
+//         },
+//       }}
+//     >
+//       <HomeScreen />
+//     </WebsitePageWrapper>
+//   );
+// }
