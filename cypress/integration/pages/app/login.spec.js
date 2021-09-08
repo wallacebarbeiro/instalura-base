@@ -3,6 +3,8 @@
 describe('/pages/app/login/', () => {
   // it === test que estamos fazendo
   it('preencha os campos e vá para a página /app/profile', () => {
+    cy.intercept('https://instalura-api-git-master-omariosouto.vercel.app/api/login').as('userLogin');
+
     cy.visit('/app/login/');
 
     // preencher o input de usuário
@@ -17,5 +19,17 @@ describe('/pages/app/login/', () => {
 
     // o que esperamos? ir para "/pages/app/profile/"
     cy.url().should('include', '/app/profile');
+
+    // Temos Token?
+    cy.wait('@userLogin')
+      .then((intercet) => {
+        // Token do servidor
+        const { token } = intercet.response.body.data;
+
+        cy.getCookie('APP_TOKEN')
+          .should('exist')
+          // token do cookie é igual ao do server?
+          .should('have.property', 'value', token);
+      });
   });
 });
