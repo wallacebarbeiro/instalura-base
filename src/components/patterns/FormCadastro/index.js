@@ -24,10 +24,10 @@ function FormContent() {
     nome: 'devsoutinho@gmail.com',
   });
 
-  function handleChange(event) {
+  const handleChange = (event) => {
     const fieldName = event.target.getAttribute('name');
     setUserInfo({ ...userInfor, [fieldName]: event.target.value });
-  }
+  };
 
   const isFormInvalid = userInfor.usuario.length === 0 || userInfor.nome.length === 0;
 
