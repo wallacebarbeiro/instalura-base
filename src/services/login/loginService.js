@@ -1,5 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 import { destroyCookie, setCookie } from 'nookies';
+import { isStagingEnv } from '../../infra/env/isStagingEnv';
 
 async function HttpClient(url, { headers, body, ...options }) {
   return fetch(url, {
@@ -18,10 +19,15 @@ async function HttpClient(url, { headers, body, ...options }) {
       throw new Error('Falha em pegar os dados do servidor :(');
     });
 }
+const BASE_URL = isStagingEnv
+// Back End de dev
+  ? 'https://instalura-api-git-master-omariosouto.vercel.app'
+// Back End de prod, mas usamos iguais pq essa não está funcionando.
+  : 'https://instalura-api-git-master-omariosouto.vercel.app';
 
 export const loginService = {
   async login({ username, password }) {
-    return HttpClient('https://instalura-api-git-master-omariosouto.vercel.app/api/login', {
+    return HttpClient(`${BASE_URL}/api/login`, {
       method: 'POST',
       body: {
         username, // 'omariosouto'
