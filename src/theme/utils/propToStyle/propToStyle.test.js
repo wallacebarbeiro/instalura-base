@@ -2,7 +2,7 @@ import propToStyle from './index';
 
 describe('propToStyle()', () => {
   describe('when receives a simple argument', () => {
-    test(' and it is a string', () => {
+    test('and it is a string', () => {
     // Vamos inserir o que teremos que testar dentro do compoment antes de
     // passar o objeto com o mesmo valor
       const propToStyleResult = propToStyle('textAlign');
@@ -12,7 +12,7 @@ describe('propToStyle()', () => {
       const styleResult = propToStyleResult(componentProps);
       expect(styleResult).toEqual({ textAlign: 'center' });
     });
-    test(' and it is a number', () => {
+    test('and it is a number', () => {
     // Vamos inserir o que teremos que testar dentro do compoment antes de
     // passar o objeto com o mesmo valor
       const propToStyleResult = propToStyle('flex');
