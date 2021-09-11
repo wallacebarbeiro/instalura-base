@@ -37,6 +37,19 @@ const colors = {
       contrastText: '#fff',
     },
   },
+  // Feedback colors
+  error: {
+    main: {
+      color: '#dc3545',
+      contrastText: '#fff',
+    },
+  },
+  success: {
+    main: {
+      color: '#28a745',
+      contrastText: '#fff',
+    },
+  },
   modes: {
     dark: {},
   },
