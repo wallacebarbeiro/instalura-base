@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import React from 'react';
+import PropTypes from 'prop-types';
 import * as yup from 'yup';
 import { useForm } from '../../../infra/hooks/forms/useForm';
 import { loginService } from '../../../services/login/loginService';
@@ -31,7 +32,7 @@ const loginSchema = yup.object().shape({
 //     }),
 // );
 
-export default function LoginForm() {
+export default function LoginForm({ onSubmit }) {
   const router = useRouter();
   const initialValues = {
     usuario: '',
@@ -40,12 +41,20 @@ export default function LoginForm() {
   const form = useForm({
     initialValues,
     onSubmit: (values) => {
+      form.setIsFormDisabled(true);
       loginService.login({
         username: values.usuario, // 'omariosouto'
         password: values.senha, // 'senhaegura'
       }).then(() => {
         router.push('/app/profile');
-      });
+      })
+        .catch((err) => {
+          // eslint-disable-next-line no-console
+          console.log(err);
+        })
+        .finally(() => {
+          form.setIsFormDisabled(false);
+        });
     },
     async validateSchema(values) {
       return loginSchema.validate(
@@ -55,7 +64,7 @@ export default function LoginForm() {
     },
   });
   return (
-    <form id="formCadastro" onSubmit={form.handleSubmit}>
+    <form id="formCadastro" onSubmit={onSubmit || form.handleSubmit}>
       <TextField
         placeholder="Usuário"
         name="usuario"
@@ -74,7 +83,6 @@ export default function LoginForm() {
         isTouched={form.touched.senha}
         onChange={form.handleChange}
         onBlur={form.handleBlur}
-        touc
       />
 
       <Button
@@ -91,8 +99,16 @@ export default function LoginForm() {
       </Button>
       <pre>
         {/* {JSON.stringify(form.erros, null, 4)} */}
-        {JSON.stringify(form.touched, null, 4)}
+        {/* {JSON.stringify(form.touched, null, 4)} */}
       </pre>
     </form>
   );
 }
+
+LoginForm.defaultProps = {
+  onSubmit: undefined,
+};
+
+LoginForm.propTypes = {
+  onSubmit: PropTypes.func,
+};
