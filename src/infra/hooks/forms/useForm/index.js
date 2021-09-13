@@ -12,31 +12,27 @@ export function useForm({
   const [errors, setErrors] = React.useState({});
   const [touched, setTouchedFields] = React.useState({});
 
-  React.useEffect(() => {
-    // validateSchema
+  async function validadeValues(currentValues) {
+    try {
+      await validateSchema(currentValues);
+      setIsFormDisabled(false);
+      setErrors({});
+    } catch (err) {
+      const formatedErros = err.inner.reduce((errorObjectAcc, currentError) => {
+        const fieldName = currentError.path;
+        const errorMessage = currentError.message;
+        return {
+          ...errorObjectAcc,
+          [fieldName]: errorMessage,
+        };
+      }, {});
+      setErrors(formatedErros);
+      setIsFormDisabled(true);
+    }
+  }
 
-    validateSchema(values)
-      .then(() => {
-        // console.log(result);
-        setIsFormDisabled(false);
-        setErrors({});
-      })
-      .catch((err) => {
-        const formatedErros = err.inner.reduce((errorObjectAcc, currentError) => {
-          // console.log(currentError);
-          const fieldName = currentError.path;
-          const errorMessage = currentError.message;
-          // Desta maneira aparecerá um erro por vez ja que um nome é unico vai um error ficar
-          //  no outro seguindo a ordem do yup ou seja sempre os primeiros erros
-          return {
-            ...errorObjectAcc,
-            [fieldName]: errorMessage,
-          };
-        }, {});
-        // console.log(formatedErros);
-        setErrors(formatedErros);
-        setIsFormDisabled(true);
-      });
+  React.useEffect(() => {
+    validadeValues(values);
   }, [values]);
 
   return {
@@ -55,6 +51,7 @@ export function useForm({
     },
     // Validação do form
     isFormDisabled,
+    setIsFormDisabled,
     // Passando os erros
     errors,
     touched,
