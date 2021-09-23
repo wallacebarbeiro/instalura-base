@@ -15,6 +15,7 @@ export default function websitePageHOC(
         {...pageWrapperProps}
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...props.pageWrapperProps}
+        messages={props.messages}
       >
         <Component
           // eslint-disable-next-line react/jsx-props-no-spreading
