@@ -2,9 +2,9 @@ import { authService } from '../../src/services/auth/authService';
 import { userService } from '../../src/services/user/userService';
 import websitePageHOC from '../../src/components/wrappers/WebsitePage/hoc';
 
-import ProfilePage from '../../src/components/screens/ProfileScreen';
+import FeedPage from '../../src/components/screens/FeedScreen';
 
-export default websitePageHOC(ProfilePage, {
+export default websitePageHOC(FeedPage, {
   pageWrapperProps: {
     seoProps: {
       headTitle: 'Profile Page',

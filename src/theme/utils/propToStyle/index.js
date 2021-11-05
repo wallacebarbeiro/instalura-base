@@ -17,6 +17,7 @@ function propToStyle(propName) {
 
       if (propValue.xs) breakpoints.xs = { [propName]: propValue.xs };
       if (propValue.md) breakpoints.md = { [propName]: propValue.md };
+      if (propValue.lg) breakpoints.lg = { [propName]: propValue.lg };
 
       return breakpointsMedia(breakpoints);
 

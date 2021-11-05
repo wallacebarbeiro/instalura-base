@@ -29,6 +29,10 @@ const Container = styled.div`
   ${propToStyle('display')}
   ${propToStyle('flex')}
   ${propToStyle('alignItems')}
+  ${propToStyle('paddingLeft')}
+  ${propToStyle('paddingRight')}
+  ${propToStyle('margin')}
+  ${propToStyle('padding')}
 
 `;
 
@@ -132,7 +136,12 @@ const Col = styled.div`
   ${propToStyle('alignItems')}
   ${propToStyle('justifyContent')}
   ${propToStyle('flexDirection')}
-  ${propToStyle('paddinRight')}
+  ${propToStyle('paddingRight')}
+  ${propToStyle('paddingLeft')}
+  ${propToStyle('margin')}
+  ${propToStyle('padding')}
+
+
 
 `;
 
@@ -141,10 +150,13 @@ const Row = styled.div`
   flex-wrap: wrap;
   margin-right: -16px;
   margin-left: -16px;
+  ${propToStyle('margin')}
+  ${propToStyle('padding')}
   ${propToStyle('flex')}
   ${propToStyle('marginLeft')}
   ${propToStyle('paddingRight')}
   ${propToStyle('justifyContent')}
+  ${propToStyle('alignItems')}
   ${propToStyle('marginTop')}
   ${propToStyle('marginBottom')}
   ${propToStyle('flexDirection')}

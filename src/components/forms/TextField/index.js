@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 import Text from '../../foundation/Text';
 
 const InputWrapper = styled.div`
-  margin-bottom: 17px;
+  margin-bottom: ${({ children }) => children[0].props.marginBottom || '17px'} ;
+  
 `;
 
 const Input = styled(Text)`

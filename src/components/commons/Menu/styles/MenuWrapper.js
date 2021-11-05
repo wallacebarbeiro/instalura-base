@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import breakpointsMedia from '../../../../theme/utils/breakpointsMedia';
+import propToStyle from '../../../../theme/utils/propToStyle';
 import { TextStyleVariants } from '../../../foundation/Text';
 
 const MenuWrapper = styled.nav`
@@ -11,10 +12,11 @@ const MenuWrapper = styled.nav`
   margin-top: 18px;
   padding-left: 28px;
   padding-right: 28px;
+  ${propToStyle('marginTop')};
   ${breakpointsMedia({
     md: css`
       justify-content: flex-start;
-      margin-top: 32px;
+      margin-top: ${(props) => (props.marginTop ? props.marginTop : '32px')};
       margin-left: auto;
       margin-right: auto;
       width: 100%;
@@ -28,6 +30,56 @@ const MenuWrapper = styled.nav`
       max-width: 1222px;
     `,
   })}
+
+${breakpointsMedia({
+    xs: css`
+
+    .logo--mobile {
+      svg {
+        width: 82px;
+        height: 20px;        
+      } 
+      text-align:center;
+      padding-right: 0px;
+    }
+
+    .menu--mobile {
+        display: flex;
+        justify-content: center;
+        align-items:center;
+        position: fixed;
+        bottom: 0px;
+        background: #FFFFFF;
+        box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.04);
+        border-radius: 24px 24px 0px 0px;
+        width: 100%;
+        left: 0px;
+        height:64px;
+        z-index:20;
+    }
+   `,
+    lg: css`
+
+      .logo--mobile {
+        svg {
+          width: auto;
+          height: auto;        
+        } 
+        text-align:left;
+        padding-right: 16px;
+      }
+    
+       div.menu--mobile {
+        position: relative;
+        width: auto;
+        height:auto;
+        justify-content: flex-end;
+        align-items:center;
+        box-shadow: none;
+        border-radius:0px;
+      }
+    `,
+  })} 
 `;
 
 MenuWrapper.LeftSide = styled.div`
@@ -37,7 +89,7 @@ MenuWrapper.LeftSide = styled.div`
   ${breakpointsMedia({
     md: css`
         width: 131px;
-        height: 32px;
+        height: ${(props) => (props.profileImage ? 'auto' : '32px')};
       `,
   })}
   ${breakpointsMedia({
@@ -82,7 +134,7 @@ MenuWrapper.CentralSide = styled.div`
     transition: 200ms ease-in-out;
     ${breakpointsMedia({
     xs: css`
-        ${TextStyleVariants.smallestException}
+      ${TextStyleVariants.smallestException}
     `,
     md: css`
       ${TextStyleVariants.paragraph1}
@@ -109,6 +161,148 @@ MenuWrapper.RightSide = styled.div`
       order: initial;
     `,
   })}
+`;
+
+MenuWrapper.AlignMenuItems = styled.ul`
+  margin: 0px;
+  padding-left: 0px;
+  list-style:none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  ${breakpointsMedia({
+    xs: css`
+         width:100%;         
+      `,
+    lg: css`
+         width:auto;
+         justify-content: flex-start;
+      `,
+  })} 
+
+  form {       
+    display: flex;
+    align-items:center;
+    border-radius: 12px;
+    ${breakpointsMedia({
+    lg: css`
+         padding: 6px 8px;
+         border: 1px solid #88989E;
+      `,
+  })} 
+    
+    ${breakpointsMedia({
+    xs: css`
+         input[type=text] {
+          display:none;
+         };
+      `,
+    lg: css`
+         width: 288px;
+         input[type=text] {
+          display:inline-block;
+         };
+      `,
+  })} 
+
+    input {
+      color: #88989E;
+      border:0px;
+    }
+  }
+
+  button {
+    border:0px;
+    background-color: transparent;
+  }
+
+  li {
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    margin:0px 17.5px;
+  }
+
+  ${breakpointsMedia({
+    xs: css`
+        li {
+          img {
+            height: 20px;
+          }
+        }
+
+        li:nth-child(1) {           
+           img {
+            filter:brightness(0%);
+           }
+         }
+        li:nth-child(3) {
+           order: -1;
+
+           img {
+            filter:brightness(0%);
+           }
+         }
+
+        
+      `,
+    lg: css`
+        li:nth-child(3) {
+           order: 0;
+         }
+      `,
+  })} 
+
+  li {
+    img {     
+      ${breakpointsMedia({
+    lg: css`         
+          width: auto;
+          height: auto;
+          filter: none !important;
+      `,
+  })}    
+  }
+}
+  
+li:last-child {
+    ${breakpointsMedia({
+    lg: css`
+          margin-right:0px;
+    `,
+  })};
+    img {
+      ${breakpointsMedia({
+    xs: css`
+        width: 20px;
+        border: 2px solid #D7385E;
+      `,
+    lg: css`
+        border:0px;
+        width: 32px !important;
+        height: 32px !important;
+      `,
+  })};
+      border-radius: 50%;
+      aspect-ratio: 1 / 1;
+      width: 32px;
+      object-fit: cover;
+    }
+  }
+
+  .cadastrarFoto {
+    width:32px;
+    height: 32px;
+    background-color: #FB7B6B;
+    color: white;
+    border-radius: 50%;
+    font-size: 18px;
+    font-weight: 400;
+    text-align: center;
+    cursor: pointer;
+  }
+
 `;
 
 export default MenuWrapper;

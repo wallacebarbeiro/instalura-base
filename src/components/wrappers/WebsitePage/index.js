@@ -7,6 +7,7 @@ import Menu from '../../commons/Menu';
 import Modal from '../../commons/Modal';
 import Box from '../../foundation/layout/Box';
 import FormCadastro from '../../patterns/FormCadastro';
+import FormCadastrarFoto from '../../patterns/FormcadastrarFoto';
 import SEO from '../../commons/SEO';
 
 import { WebsitePageContext } from './context';
@@ -47,13 +48,17 @@ export default function WebsitePageWrapper({
           onClose={() => setModalState(false)}
         >
           {(propsDoModal) => (
-            <FormCadastro propsDoModal={propsDoModal} />
+            menuProps.isLoged
+              ? <FormCadastrarFoto propsDoModal={propsDoModal} setModalState={setModalState} />
+              : <FormCadastro propsDoModal={propsDoModal} />
           )}
 
         </Modal>
-        {menuProps.display && <Menu onCadastrarClick={() => setModalState(true)} />}
+        {menuProps.display && (
+          <Menu isLoged={menuProps.isLoged} onCadastrarClick={() => setModalState(true)} />
+        )}
         {children}
-        <Footer />
+        {!menuProps.isLoged && <Footer /> }
       </Box>
     </WebsitePageContext.Provider>
   );
@@ -64,6 +69,7 @@ WebsitePageWrapper.defaultProps = {
   pageBoxProps: {},
   menuProps: {
     display: true,
+    isLoged: false,
   },
   messages: {},
 };
@@ -74,6 +80,7 @@ WebsitePageWrapper.propTypes = {
   }),
   menuProps: PropTypes.shape({
     display: PropTypes.bool,
+    isLoged: PropTypes.bool,
   }),
   pageBoxProps: PropTypes.shape({
     flexWrap: PropTypes.string,
