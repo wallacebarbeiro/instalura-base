@@ -30,7 +30,7 @@ const ButtonWrapper = styled.button`
       ${TextStyleVariants.smallestException}
     `,
     md: css`
-      padding: 12px 43px;
+      padding: ${({ padding }) => (padding || '12px 43px')};
       ${TextStyleVariants.paragraph1}
     `,
   })}
@@ -52,7 +52,13 @@ const ButtonWrapper = styled.button`
 
     ${propToStyle('margin')}
     ${propToStyle('display')}
+    ${propToStyle('padding')}
+    ${propToStyle('width')}
+    ${propToStyle('height')}
+    ${propToStyle('backgroundColor')}
     ${propToStyle('marginBottom')}
+    ${propToStyle('marginLeft')}
+    ${propToStyle('borderRadius')}
     
 `;
 

@@ -6,9 +6,9 @@ import { authService } from '../auth/authService';
 
 const BASE_URL = isStagingEnv
 // Back End de dev
-  ? 'https://instalura-api-git-master-omariosouto.vercel.app'
+  ? 'https://instalura-api.vercel.app'
 // Back End de prod, mas usamos iguais pq essa não está funcionando.
-  : 'https://instalura-api-git-master-omariosouto.vercel.app';
+  : 'https://instalura-api.vercel.app';
 
 export const userService = {
   async getProfilePage(ctx) {
@@ -28,6 +28,45 @@ export const userService = {
       };
     } catch (err) {
       throw new Error('Não conseguimos pegar os posts');
+    }
+  },
+  async sendNewPost(data) {
+    const url = `${BASE_URL}/api/posts`;
+    try {
+      const token = await authService().getToken();
+      const response = await HttpClient(url, {
+        method: 'POST',
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+        body: data,
+      });
+
+      if (response.data) {
+        return response.data;
+      }
+      return undefined;
+    } catch (err) {
+      return undefined;
+    }
+  },
+  async sendLike(id) {
+    const url = `${BASE_URL}/api/posts/${id}/like`;
+    try {
+      const token = await authService().getToken();
+      const response = await HttpClient(url, {
+        method: 'POST',
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+        body: {},
+      });
+      if (response.data) {
+        return response.data;
+      }
+      return undefined;
+    } catch (err) {
+      return undefined;
     }
   },
 };

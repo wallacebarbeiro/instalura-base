@@ -40,18 +40,14 @@ const TextBase = styled.span`
     ${({ variant }) => TextStyleVariants[variant]} 
     ${propToStyle('textAlign')}
     ${propToStyle('marginBottom')}
+    ${propToStyle('display')}
     ${propToStyle('marginTop')}
     ${propToStyle('marginBottom')}
+    ${propToStyle('fontSize')}
+    ${propToStyle('fontWeight')}
+    ${propToStyle('color')}
     color: ${({ theme, color }) => get(theme, `colors.${color}.color`)};
 `;
-
-/* ${(props) => {
-    return {
-      textAlign: props.textAlign,
-    };
-    // return `
-    // text-align :  ${props.textAlign},
-    // `}} } */
 
 export default function Text({
   tag,

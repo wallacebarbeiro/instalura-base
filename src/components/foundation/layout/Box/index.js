@@ -15,12 +15,16 @@ const Box = styled.div`
     ${propToStyle('padding')} 
 
     ${propToStyle('width')}
+    ${propToStyle('height')}
+    ${propToStyle('alignItems')}
     ${propToStyle('listStyle')} 
     ${propToStyle('margin')}  
     ${propToStyle('marginLeft')} 
     ${propToStyle('marginTop')} 
     ${propToStyle('marginBottom')}
     ${propToStyle('marginRight')}  
+    ${propToStyle('borderBottom')}
+    ${propToStyle('borderRadius')}
     ${({ theme, borderRadiusTheme }) => borderRadiusTheme && `border-radius: ${theme.borderRadius}`};     
 `;
 
