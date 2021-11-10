@@ -77,6 +77,7 @@ function FormContent({ setModalState }) {
 
   return (
     <FormCadastrarForm
+      id="formCadastrarPost"
       onSubmit={(event) => {
         event.preventDefault();
         setPagination((prevResult) => ({
@@ -130,7 +131,7 @@ function FormContent({ setModalState }) {
                     marginBottom="0px"
                     onChange={({ target }) => setInputValue(target.value)}
                     value={inputValue}
-                    name="foto"
+                    name="fotoUrl"
                     placeholder="URL da imagem"
                   />
                   { isValidUrl === false && <Text color="red" display="block" textAlign="center"><small>A url não é válida</small></Text> }
@@ -140,6 +141,7 @@ function FormContent({ setModalState }) {
                 <Button
                   className="btn__verifyUrl"
                   type="button"
+                  id="validUrl"
                   variant="secondary.main"
                   onClick={() => validaUrl(inputValue)}
                 >
@@ -194,7 +196,8 @@ function FormContent({ setModalState }) {
               && (
               <button
                 className="btn__action"
-                type="submit"
+                type="button"
+                id="btnAvancar"
                 width="100%"
                 display="block"
                 variant="primary.main"
